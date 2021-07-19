@@ -13,6 +13,6 @@ public class SessionHelper extends HelperBase{
   public void login(String password, String username) {
     type (By.name("user"),username);
     type(By.name("pass"),password);
-    click(By.id("LoginForm"));
+    click(By.xpath("//input[@value='Login']"));
   }
 }

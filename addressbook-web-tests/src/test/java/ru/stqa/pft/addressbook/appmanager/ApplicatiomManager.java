@@ -4,10 +4,11 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import ru.stqa.pft.addressbook.model.ContactData;
 
 import java.util.concurrent.TimeUnit;
 
-public class ApplicatiomManager {
+public class ApplicatiomManager{
   WebDriver wd;
   private SessionHelper sessionHelper;
   private NavigationHelper navigationHelper;
@@ -46,4 +47,11 @@ public class ApplicatiomManager {
   public NavigationHelper getNavigationHelper() {
     return navigationHelper;
   }
+
+
+
+
+
+
 }
+
