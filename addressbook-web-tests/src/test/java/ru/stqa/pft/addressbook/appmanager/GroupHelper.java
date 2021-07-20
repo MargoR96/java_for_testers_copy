@@ -37,33 +37,6 @@ public class GroupHelper extends HelperBase {
   public void selectGroup() {
     click(By.name("selected[]"));
   }
-  public void deleteSelectedContacts() {
-    click(By.xpath("//input[@value='Delete']"));
-  }
-
-  public void selectContact() {
-    click(By.id("3"));
-
-  }
-  public void submitData2() {
-
-    click(By.xpath("//div[@id='content']/form/input[21]"));
-
-    ;
-  }
-
-
-  public void returmToContactPage() {
-    click(By.linkText("add next"));
-
-  }
-
-  public void fillContactData(ContactData contactData) {
-    type(By.name("lastname"),contactData.getFirstname());
-    type(By.name("home"),contactData.getHome());
-    type(By.name("email"),contactData.getMail());
-    type(By.name("notes"),contactData.getNotes());
-  }
 
 
 
