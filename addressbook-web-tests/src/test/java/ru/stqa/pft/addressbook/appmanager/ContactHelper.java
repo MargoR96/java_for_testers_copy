@@ -20,8 +20,7 @@ public class ContactHelper extends HelperBase {
   }
 
   public void selectContact() {
-    click(By.id("3"));
-
+    click(By.id("7"));
   }
   public void submitData2() {
 
@@ -44,5 +43,15 @@ public class ContactHelper extends HelperBase {
   }
 
 
+  public void initModificationContact() {
+    click(By.xpath("//img[@alt='Edit']"));
+  }
 
+  public void submitModificationContact() {
+    click(By.name("update"));
+  }
+
+  public void submitDeletionContact() {
+    wd.switchTo().alert().accept();
+  }
 }
