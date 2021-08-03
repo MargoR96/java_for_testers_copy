@@ -71,8 +71,17 @@ public class ContactHelper extends HelperBase {
   }
 
   public void createContact(ContactData contact, boolean b) {
+    initContactPage();
     fillContactData(contact,b);
     submitData();
     returmToContactPage();
+  }
+
+  private void initContactPage() {
+    click(By.linkText("add new"));
+  }
+
+  public int getContactCount() {
+    return wd.findElements(By.name("selected[]")).size();
   }
 }
