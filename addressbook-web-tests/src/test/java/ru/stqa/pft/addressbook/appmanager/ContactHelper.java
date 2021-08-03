@@ -66,7 +66,7 @@ public class ContactHelper extends HelperBase {
     wd.switchTo().alert().accept();
   }
 
-  public boolean isThereAGroup() {
+  public boolean isThereAContact() {
     return isElementPresent(By.name("selected[]"));
   }
 
