@@ -43,6 +43,7 @@ public class ContactHelper extends HelperBase {
   }
 
   public void fillContactData(ContactData contactData,boolean creation) {
+    type(By.name("firstname"),contactData.getFirstname());
     type(By.name("lastname"),contactData.getLastName());
     type(By.name("home"),contactData.getHome());
     type(By.name("email"),contactData.getMail());
@@ -92,10 +93,11 @@ public class ContactHelper extends HelperBase {
 
   public List<ContactData> getContactList() {
     List<ContactData> contacts= new ArrayList<ContactData>();
-    List<WebElement> elements = wd.findElements(By.cssSelector("td.center"));
+    List<WebElement> elements = wd.findElements(By.cssSelector("td.center>input"));
     for (WebElement element : elements){
+      String firstname = element.getText();
       String name = element.getText();
-      ContactData contact = new ContactData(name,null,null,null,null);
+      ContactData contact = new ContactData(name,firstname,null,null,null,null);
       contacts.add(contact);
     }
     return contacts;
