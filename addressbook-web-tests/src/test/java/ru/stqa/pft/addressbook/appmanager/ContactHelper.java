@@ -93,12 +93,16 @@ public class ContactHelper extends HelperBase {
 
   public List<ContactData> getContactList() {
     List<ContactData> contacts= new ArrayList<ContactData>();
-    List<WebElement> elements = wd.findElements(By.cssSelector("td.center>input"));
-    for (WebElement element : elements){
+    //List<WebElement> elements = wd.findElements(By.cssSelector("td.center>input"));
+    List<WebElement> rows = wd.findElements(By.name("entry"));
+    for (WebElement row : rows){
       //String id = element.findElement(By.cssSelector("input")).getAttribute("value");
-      String firstname = element.getText();
-      String name = element.getText();
-      ContactData contact = new ContactData(name,firstname,null,null,null,null);
+      List<WebElement> cells = row.findElements(By.tagName("td"));
+      int id = Integer.parseInt(cells.get(0).findElement(By.tagName("input")).getAttribute("value"));
+      String firstname = row.getText();
+      String name = row.getText();
+      // name = element.getText();
+      ContactData contact = new ContactData(id,name,firstname,null,null,null,null);
       contacts.add(contact);
     }
     return contacts;

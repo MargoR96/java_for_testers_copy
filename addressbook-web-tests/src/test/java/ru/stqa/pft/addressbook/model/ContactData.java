@@ -9,7 +9,7 @@ public class ContactData {
   private final String notes;
   private String group;
   private String firstname;
-  private final String id;
+  private final int id;
 
   @Override
   public boolean equals(Object o) {
@@ -33,12 +33,12 @@ public class ContactData {
             '}';
   }
 
-  public String getId() {
+  public int getId() {
     return id;
   }
 
 
-  public ContactData(String id,String firstname,String lastname, String home, String mail, String notes, String group) {
+  public ContactData(int id,String firstname,String lastname, String home, String mail, String notes, String group) {
     this.id = id;
     this.lastname = lastname;
     this.firstname = firstname;
@@ -49,7 +49,7 @@ public class ContactData {
   }
 
   public ContactData(String firstname, String lastname, String home, String mail, String notes, String group) {
-    this.id = null;
+    this.id = 0;
     this.lastname = lastname;
     this.firstname = firstname;
     this.home = home;
