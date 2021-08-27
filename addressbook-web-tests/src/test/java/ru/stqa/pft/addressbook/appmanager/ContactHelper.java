@@ -29,6 +29,7 @@ public class ContactHelper extends HelperBase {
   public void selectContact(int index) {
     wd.findElements(By.name("selected[]")).get(index).click();
   }
+
   public void submitData2() {
 
     click(By.xpath("//div[@id='content']/form/input[21]"));
@@ -45,9 +46,9 @@ public class ContactHelper extends HelperBase {
   public void fillContactData(ContactData contactData,boolean creation) {
     type(By.name("firstname"),contactData.getFirstname());
     type(By.name("lastname"),contactData.getLastName());
-    type(By.name("home"),contactData.getHome());
-    type(By.name("email"),contactData.getMail());
-    type(By.name("notes"),contactData.getNotes());
+//    type(By.name("home"),contactData.getHome());
+//    type(By.name("email"),contactData.getMail());
+//    type(By.name("notes"),contactData.getNotes());
     if (creation) {
       new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
     } else {
@@ -80,7 +81,6 @@ public class ContactHelper extends HelperBase {
     initContactPage();
     fillContactData(contact,b);
     submitData();
-    returmToContactPage();
   }
 
   private void initContactPage() {
@@ -99,10 +99,10 @@ public class ContactHelper extends HelperBase {
       //String id = element.findElement(By.cssSelector("input")).getAttribute("value");
       List<WebElement> cells = row.findElements(By.tagName("td"));
       int id = Integer.parseInt(cells.get(0).findElement(By.tagName("input")).getAttribute("value"));
-      String firstname = row.getText();
-      String name = row.getText();
+      String firstname = cells.get(2).getText();
+      String lastname = cells.get(1).getText();
       // name = element.getText();
-      ContactData contact = new ContactData(id,name,firstname,null,null,null,null);
+      ContactData contact = new ContactData(id,firstname,lastname,"test2");
       contacts.add(contact);
     }
     return contacts;

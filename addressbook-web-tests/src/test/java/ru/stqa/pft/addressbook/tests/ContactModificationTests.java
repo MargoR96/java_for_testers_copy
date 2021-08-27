@@ -13,12 +13,12 @@ public class ContactModificationTests extends TestBase{
     app.getNavigationHelper().goToHome();
 
     if (!app.getContactHelper().isThereAContact()){
-      app.getContactHelper().createContact(new ContactData("1","test", "1", "test@mail.ru", "22","test2"),true);
+      app.getContactHelper().createContact(new ContactData("test","1","test2"),false);
     }
     List<ContactData> before = app.getContactHelper().getContactList();
     app.getContactHelper().selectContact(before.size()-1);
     app.getContactHelper().initModificationContact();
-    ContactData contact  = new ContactData("1","test", "1", "test@mail.ru", "22",null);
+    ContactData contact  = new ContactData("test","1","test2");
     app.getContactHelper().fillContactData(contact,false);
     app.getContactHelper().submitModificationContact();
     app.getNavigationHelper().goToHome();
