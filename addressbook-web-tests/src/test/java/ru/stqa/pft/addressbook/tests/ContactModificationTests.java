@@ -17,11 +17,11 @@ public class ContactModificationTests extends TestBase{
     }
     List<ContactData> before = app.getContactHelper().getContactList();
     app.getContactHelper().selectContact(before.size()-1);
-    app.getContactHelper().initModificationContact();
+    //app.getContactHelper().initModificationContact();
     ContactData contact  = new ContactData("test","1","test2");
     app.getContactHelper().fillContactData(contact,false);
     app.getContactHelper().submitModificationContact();
-    app.getNavigationHelper().goToHome();
+    app.getContactHelper().goToContactPage();
     List<ContactData> after = app.getContactHelper().getContactList();
     Assert.assertEquals(after.size(),before.size());
     before.remove(before.size()-1);
