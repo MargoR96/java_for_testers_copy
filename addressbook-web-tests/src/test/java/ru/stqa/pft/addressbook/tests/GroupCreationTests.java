@@ -16,12 +16,12 @@ public class GroupCreationTests extends TestBase{
   public void testGroupCreation() throws Exception {
     app.goTo().groupPage();
     List<GroupData> before = app.group().list();
-    GroupData group = new GroupData("test2", null, null);
+    GroupData group = new GroupData().withName("test2");
     app.group().create(group);
     List<GroupData> after = app.group().list();
     Assert.assertEquals(after.size(),before.size() + 1);
 
-    group.setId(after.stream().max((o1, o2) -> Integer.compare(o1.getId(), o2.getId())).get().getId());
+    group.withId(after.stream().max((o1, o2) -> Integer.compare(o1.getId(), o2.getId())).get().getId());
     Comparator<? super GroupData> byId = (Comparator<GroupData>) (o1, o2) -> Integer.compare(o1.getId(), o2.getId());
     before.sort(byId);
     after.sort(byId);

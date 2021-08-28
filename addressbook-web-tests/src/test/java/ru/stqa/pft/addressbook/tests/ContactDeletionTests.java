@@ -13,7 +13,7 @@ public class ContactDeletionTests extends TestBase {
     app.contact().contactPage();
 
     if (app.contact().list().size() ==0){
-      app.contact().create(new ContactData("test","1","test2"),false);
+      app.contact().create(new ContactData().withFirstname("test").withLastname("1").withGroup("test2"),false);
     }
   }
 
