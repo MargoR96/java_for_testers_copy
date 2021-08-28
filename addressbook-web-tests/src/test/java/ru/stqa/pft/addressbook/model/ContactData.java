@@ -41,6 +41,8 @@ public class ContactData {
     return id;
   }
 
+
+
   public ContactData withId(int id) {
     this.id = id;
     return this;
@@ -67,11 +69,11 @@ public class ContactData {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
     ContactData that = (ContactData) o;
-    return Objects.equals(lastname, that.lastname) && Objects.equals(firstname, that.firstname);
+    return id == that.id && Objects.equals(lastname, that.lastname) && Objects.equals(firstname, that.firstname);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(lastname, firstname);
+    return Objects.hash(lastname, firstname, id);
   }
 }
