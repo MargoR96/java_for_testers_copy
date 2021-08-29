@@ -13,14 +13,16 @@ public class Contacts extends ForwardingSet<ContactData> {
     this.delegate = new HashSet<ContactData>(contacts.delegate);
   }
 
+  @Override
+  protected Set<ContactData> delegate() {
+    return delegate;
+  }
+
   public Contacts() {
     this.delegate = new HashSet<ContactData>();
   }
 
-  @Override
-  protected Set delegate() {
-    return null;
-  }
+
   public Contacts withAdded (ContactData contact){
     Contacts contacts = new Contacts(this);
     contacts.add(contact);
