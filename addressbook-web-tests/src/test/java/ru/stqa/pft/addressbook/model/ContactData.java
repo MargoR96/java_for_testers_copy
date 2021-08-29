@@ -47,6 +47,18 @@ public class ContactData {
     return id;
   }
 
+  public String getHomePhone() {
+    return homePhone;
+  }
+
+  public String getMobilePhone() {
+    return mobilePhone;
+  }
+
+  public String getWorkPhone() {
+    return workPhone;
+  }
+
 
 
   public ContactData withId(int id) {
@@ -78,6 +90,8 @@ public class ContactData {
     this.mobilePhone = mobilePhone;
     return this;
   }
+
+
 
   public ContactData withWorkPhone(String workPhone) {
     this.workPhone = workPhone;
