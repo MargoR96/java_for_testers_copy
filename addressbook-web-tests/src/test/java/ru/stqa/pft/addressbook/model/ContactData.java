@@ -13,6 +13,11 @@ public class ContactData {
 
 
 
+
+
+  private String allPhones;
+
+
   private int id = Integer.MAX_VALUE;;
 
   @Override
@@ -59,7 +64,9 @@ public class ContactData {
     return workPhone;
   }
 
-
+  public String getAllPhones() {
+    return allPhones;
+  }
 
   public ContactData withId(int id) {
     this.id = id;
@@ -97,6 +104,10 @@ public class ContactData {
     this.workPhone = workPhone;
     return this;
   }
+  public ContactData withAllPhones(String allPhones) {
+    this.allPhones = allPhones;
+    return this;
+  }
 
   @Override
   public boolean equals(Object o) {
@@ -110,4 +121,6 @@ public class ContactData {
   public int hashCode() {
     return Objects.hash(lastname, firstname, id);
   }
+
+
 }
