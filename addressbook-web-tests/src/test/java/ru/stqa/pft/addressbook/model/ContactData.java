@@ -7,6 +7,12 @@ public class ContactData {
   private String lastname;
   private String group;
   private String firstname;
+  private String homePhone;
+  private String mobilePhone;
+  private String workPhone;
+
+
+
   private int id = Integer.MAX_VALUE;;
 
   @Override
@@ -61,6 +67,20 @@ public class ContactData {
 
   public ContactData withFirstname(String firstname) {
     this.firstname = firstname;
+    return this;
+  }
+  public ContactData withHomePhone(String homePhone) {
+    this.homePhone = homePhone;
+    return this;
+  }
+
+  public ContactData withMobilePhone(String mobilePhone) {
+    this.mobilePhone = mobilePhone;
+    return this;
+  }
+
+  public ContactData withWorkPhone(String workPhone) {
+    this.workPhone = workPhone;
     return this;
   }
 
