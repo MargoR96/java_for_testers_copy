@@ -52,9 +52,8 @@ public class ContactHelper extends HelperBase {
   public void fillContactData(ContactData contactData,boolean creation) {
     type(By.name("firstname"),contactData.getFirstname());
     type(By.name("lastname"),contactData.getLastName());
-//    type(By.name("home"),contactData.getHome());
-//    type(By.name("email"),contactData.getMail());
-//    type(By.name("notes"),contactData.getNotes());
+    attach(By.name("photo"),contactData.getPhoto());
+
     if (creation) {
       new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
     } else {
