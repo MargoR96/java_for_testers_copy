@@ -33,7 +33,7 @@ public class ContactHelper extends HelperBase {
   }
   public void selectContactById(int id) {
 
-    wd.findElement(By.cssSelector("input[value=" + id + "]") ).click();
+    wd.findElement(By.cssSelector("input[value='" + id + "']") ).click();
   }
 
   public void submitData2() {
@@ -93,7 +93,7 @@ public class ContactHelper extends HelperBase {
     contactPage();
   }
   public void modify( ContactData contact) {
-    selectContactById(contact.getId());
+    initContactModificationFromId(contact.getId());
     fillContactData(contact,false);
     submitModificationContact();
     contactCache = null;
