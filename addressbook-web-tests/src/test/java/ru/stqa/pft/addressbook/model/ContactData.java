@@ -1,5 +1,6 @@
 package ru.stqa.pft.addressbook.model;
 
+import com.google.gson.annotations.Expose;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
 
@@ -9,18 +10,22 @@ import java.util.Objects;
 @XStreamAlias("contact")
 
 public class ContactData {
-
+  @Expose
   private String lastname;
   private String group;
+  @Expose
   private String firstname;
   private String homePhone;
   private String mobilePhone;
   private String workPhone;
+  @Expose
   private String address;
+  @Expose
   private String email;
+  @Expose
   private File photo;
 
-
+  @Expose
   private String allPhones;
 
   @XStreamOmitField

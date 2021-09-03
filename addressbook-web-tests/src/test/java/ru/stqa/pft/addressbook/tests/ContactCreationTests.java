@@ -1,6 +1,8 @@
 package ru.stqa.pft.addressbook.tests;
 
+import com.google.gson.Gson;
 import com.thoughtworks.xstream.XStream;
+import org.openqa.selenium.json.TypeToken;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
@@ -20,29 +22,55 @@ import static org.hamcrest.MatcherAssert.*;
 public class ContactCreationTests extends TestBase {
 
   @DataProvider
-  public Iterator<Object[]> validContacts() throws IOException {
+  public Iterator<Object[]> validContactsXML() throws IOException {
     //List<Object[]> list = new ArrayList<Object[]>();
     File photo = new File("src/test/resourses/photo.png");
     //list.add(new Object[]{new ContactData().withFirstname("firstname 1").withLastname("lastname 1").withGroup("test2").withPhoto(photo)});
     //list.add(new Object[]{new ContactData().withFirstname("firstname 2").withLastname("lastname 2").withGroup("test2").withPhoto(photo)});
     //list.add(new Object[]{new ContactData().withFirstname("firstname 3").withLastname("lastname 3").withGroup("test2").withPhoto(photo)});
-    BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resourses/contacts.xml")));
-    String xml ="";
-    String line = reader.readLine();
-    while (line != null){
-      //String[] split = line.split(";");
-      //list.add(new Object[]{new ContactData().withFirstname(split[0]).withLastname(split[1])});
-      xml += line;
-      line = reader.readLine();
+    try ( BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resourses/contacts.xml")));
+    ) {
+      String xml ="";
+      String line = reader.readLine();
+      while (line != null){
+        //String[] split = line.split(";");
+        //list.add(new Object[]{new ContactData().withFirstname(split[0]).withLastname(split[1])});
+        xml += line;
+        line = reader.readLine();
+      }
+      XStream xstream = new XStream();
+      xstream.processAnnotations(ContactData.class);
+      List<ContactData> groups = (List<ContactData>)xstream.fromXML(xml);
+      return groups.stream().map((g) -> new Object[]{g}).collect(Collectors.toList()).iterator();
     }
-    XStream xstream = new XStream();
-    xstream.processAnnotations(ContactData.class);
-    List<ContactData> groups = (List<ContactData>)xstream.fromXML(xml);
-    return groups.stream().map((g) -> new Object[]{g}).collect(Collectors.toList()).iterator();
     //return list.iterator();
   }
+  @DataProvider
+  public Iterator<Object[]> validContactsJson() throws IOException {
+    //List<Object[]> list = new ArrayList<Object[]>();
+    File photo = new File("src/test/resourses/photo.png");
+    //list.add(new Object[]{new ContactData().withFirstname("firstname 1").withLastname("lastname 1").withGroup("test2").withPhoto(photo)});
+    //list.add(new Object[]{new ContactData().withFirstname("firstname 2").withLastname("lastname 2").withGroup("test2").withPhoto(photo)});
+    //list.add(new Object[]{new ContactData().withFirstname("firstname 3").withLastname("lastname 3").withGroup("test2").withPhoto(photo)});
+    try (BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resourses/contacts.xml")));
+    ) {
+      String json ="";
+      String line = reader.readLine();
+      while (line != null){
+        //String[] split = line.split(";");
+        //list.add(new Object[]{new ContactData().withFirstname(split[0]).withLastname(split[1])});
+        json += line;
+        line = reader.readLine();
+      }
+      Gson gson = new Gson();
+      List<ContactData> contacts = gson.fromJson(json,new TypeToken<List<ContactData>>(){}.getType());
+      return contacts.stream().map((g) -> new Object[]{g}).collect(Collectors.toList()).iterator();
+      //return list.iterator();
+    }
 
-  @Test (dataProvider = "validContacts")
+  }
+
+  @Test (dataProvider = "validContactsJson")
   public void testContactCreation(ContactData contact) throws Exception {
       app.goTo().goToHome();
       Contacts before = app.contact().all();
