@@ -1,14 +1,20 @@
 [
   {
-    "lastname": "lastname 0",
-    "firstname": "firstname 0"
+    "lastname": "test2",
+    "firstname": "test1",
+    "address": "test4",
+    "photo": "src\\test\\resourses\\photo.png"
   },
   {
-    "lastname": "lastname 1",
-    "firstname": "firstname 1"
+    "lastname": "test2",
+    "firstname": "test1",
+    "address": "test4",
+    "photo": "src\\test\\resourses\\photo.png"
   },
   {
-    "lastname": "lastname 2",
-    "firstname": "firstname 2"
+    "lastname": "test2",
+    "firstname": "test1",
+    "address": "test4",
+    "photo": "src\\test\\resourses\\photo.png"
   }
 ]

@@ -74,16 +74,21 @@ public class ContactDataGenerator {
     System.out.println(new File(".").getAbsolutePath());
     Writer writer = new FileWriter(file);
     for (ContactData contact:contacts){
-      writer.write(String.format("%s;%s;%s\n", contact.getFirstname(),contact.getLastName(),contact.getGroup()));
+      writer.write(String.format("%s;%s;%s;%s\n", contact.getFirstname(),contact.getLastName(),contact.getGroup(),contact.getAddress()));
     }
     writer.close();
   }
 
   private List<ContactData> generateContacts(int count) {
     List<ContactData> contacts = new ArrayList<ContactData>();
+    File photo = new File("src/test/resourses/photo.png");
     for (int i = 0; i < count; i++){
       contacts.add(new ContactData()
-              .withFirstname(String.format("firstname %s",i)).withLastname(String.format("lastname %s",i)));
+              .withFirstname(String.format("test1", i))
+              .withLastname(String.format("test2", i))
+              .withGroup(String.format("test2", i))
+              .withAddress(String.format("test4", i))
+              .withPhoto(photo));
     }
     return contacts;
   }

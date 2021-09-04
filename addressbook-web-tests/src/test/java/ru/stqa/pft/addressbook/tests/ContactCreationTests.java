@@ -24,7 +24,6 @@ public class ContactCreationTests extends TestBase {
   @DataProvider
   public Iterator<Object[]> validContactsXML() throws IOException {
     //List<Object[]> list = new ArrayList<Object[]>();
-    File photo = new File("src/test/resourses/photo.png");
     //list.add(new Object[]{new ContactData().withFirstname("firstname 1").withLastname("lastname 1").withGroup("test2").withPhoto(photo)});
     //list.add(new Object[]{new ContactData().withFirstname("firstname 2").withLastname("lastname 2").withGroup("test2").withPhoto(photo)});
     //list.add(new Object[]{new ContactData().withFirstname("firstname 3").withLastname("lastname 3").withGroup("test2").withPhoto(photo)});
@@ -40,15 +39,14 @@ public class ContactCreationTests extends TestBase {
       }
       XStream xstream = new XStream();
       xstream.processAnnotations(ContactData.class);
-      List<ContactData> groups = (List<ContactData>)xstream.fromXML(xml);
-      return groups.stream().map((g) -> new Object[]{g}).collect(Collectors.toList()).iterator();
+      List<ContactData> contacts = (List<ContactData>)xstream.fromXML(xml);
+      return contacts.stream().map((g) -> new Object[]{g}).collect(Collectors.toList()).iterator();
     }
     //return list.iterator();
   }
   @DataProvider
   public Iterator<Object[]> validContactsJson() throws IOException {
     //List<Object[]> list = new ArrayList<Object[]>();
-    File photo = new File("src/test/resourses/photo.png");
     //list.add(new Object[]{new ContactData().withFirstname("firstname 1").withLastname("lastname 1").withGroup("test2").withPhoto(photo)});
     //list.add(new Object[]{new ContactData().withFirstname("firstname 2").withLastname("lastname 2").withGroup("test2").withPhoto(photo)});
     //list.add(new Object[]{new ContactData().withFirstname("firstname 3").withLastname("lastname 3").withGroup("test2").withPhoto(photo)});
@@ -74,8 +72,8 @@ public class ContactCreationTests extends TestBase {
   public void testContactCreation(ContactData contact) throws Exception {
       app.goTo().goToHome();
       Contacts before = app.contact().all();
+      File photo = new File("src/test/resourses/photo.png");
       app.contact().create(contact,true);
-      app.goTo().goToHome();
       assertThat(app.contact().count(),equalTo(before.size() + 1));
       Contacts after = app.contact().all();
       assertThat(after, equalTo(
