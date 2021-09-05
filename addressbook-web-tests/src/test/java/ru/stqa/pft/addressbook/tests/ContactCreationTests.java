@@ -50,7 +50,7 @@ public class ContactCreationTests extends TestBase {
     //list.add(new Object[]{new ContactData().withFirstname("firstname 1").withLastname("lastname 1").withGroup("test2").withPhoto(photo)});
     //list.add(new Object[]{new ContactData().withFirstname("firstname 2").withLastname("lastname 2").withGroup("test2").withPhoto(photo)});
     //list.add(new Object[]{new ContactData().withFirstname("firstname 3").withLastname("lastname 3").withGroup("test2").withPhoto(photo)});
-    try (BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resourses/contacts.xml")));
+    try (BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resourses/contacts.json")));
     ) {
       String json ="";
       String line = reader.readLine();
