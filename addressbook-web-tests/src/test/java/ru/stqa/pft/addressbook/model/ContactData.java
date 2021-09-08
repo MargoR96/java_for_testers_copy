@@ -5,8 +5,10 @@ import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
 import org.hibernate.annotations.Type;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import java.io.File;
 import java.util.Objects;
 
@@ -17,12 +19,16 @@ public class ContactData {
   @Expose
   @Type(type = "text")
   private String lastname;
+  @Transient
   private String group;
   @Expose
   @Type(type = "text")
   private String firstname;
+  @Column(name = "home")
   private String homePhone;
+  @Column(name = "mobile")
   private String mobilePhone;
+  @Column(name = "work")
   private String workPhone;
   @Expose
   @Type(type = "text")
@@ -31,10 +37,12 @@ public class ContactData {
   @Type(type = "text")
   private String email;
   @Expose
+  @Column(name = "photo")
+  @Type(type = "text")
   private String photo;
 
   @Expose
-  @Type(type = "text")
+  @Transient
   private String allPhones;
 
   @XStreamOmitField

@@ -29,6 +29,9 @@ public class GroupData {
   @Column (name = "group_header")
   @Type(type = "text")
   private String header;
+
+
+
   @Expose
   @Type(type = "text")
   @Column (name = "group_footer")
@@ -79,7 +82,6 @@ public class GroupData {
   public String getFooter() {
     return footer;
   }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;
@@ -90,9 +92,8 @@ public class GroupData {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name);
+    return Objects.hash(id, name, header, footer);
   }
-
 }
 
 
