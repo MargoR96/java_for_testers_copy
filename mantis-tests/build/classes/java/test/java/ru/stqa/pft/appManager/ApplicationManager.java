@@ -17,9 +17,6 @@ public class ApplicationManager {
   private WebDriver wd;
   private String browser;
   private RegistrationHelper registrationHelper;
-  private FtpHelper ftp;
-  private MailHelper mailHelper;
-  private JamesHelper jamesHelper;
 
   public ApplicationManager(String browser) {
     this.browser = browser;
@@ -29,7 +26,7 @@ public class ApplicationManager {
   public void init() throws IOException {
     String target = System.getProperty("target", "local");
     //System.out.println(new File(".").getAbsolutePath());
-    properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties", target))));
+    properties.load(new FileReader(new File(String.format("src/resources/%s.properties", target))));
   }
 
   public void stop() {
@@ -54,12 +51,6 @@ public class ApplicationManager {
     }
   return registrationHelper;
   }
-  public FtpHelper ftp(){
-    if (ftp == null){
-      ftp = new FtpHelper(this);
-    }
-    return ftp;
-  }
 
   public WebDriver getDriver() {
     if (wd == null) {
@@ -70,23 +61,10 @@ public class ApplicationManager {
       } else if (browser.equals(BrowserType.IE)){
         wd = new InternetExplorerDriver();
       }
-      wd.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+      wd.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
       wd.get(properties.getProperty("web.baseURL"));
     }
     return wd;
-  }
-  public MailHelper mail(){
-    if ( mailHelper ==null){
-      mailHelper = new MailHelper(this);
-    }
-    return mailHelper;
-  }
-
-  public JamesHelper james(){
-    if (jamesHelper == null){
-      jamesHelper = new JamesHelper(this);
-    }
-    return jamesHelper;
   }
 }
 
