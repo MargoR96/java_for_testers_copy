@@ -5,10 +5,7 @@ import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
 import org.hibernate.annotations.Type;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import javax.persistence.Transient;
+import javax.persistence.*;
 import java.io.File;
 import java.util.Objects;
 
@@ -16,47 +13,53 @@ import java.util.Objects;
 @Entity
 @Table(name="addressbook")
 public class ContactData {
+
   @Expose
-  @Type(type = "text")
+  @Column(name = "lastname")
   private String lastname;
   @Transient
   private String group;
   @Expose
-  @Type(type = "text")
+  @Column(name = "firstname")
   private String firstname;
   @Column(name = "home")
+  @Type(type = "text")
   private String homePhone;
   @Column(name = "mobile")
+  @Type(type = "text")
   private String mobilePhone;
   @Column(name = "work")
+  @Type(type = "text")
   private String workPhone;
-  @Expose
+  @Column(name = "address")
   @Type(type = "text")
   private String address;
-  @Expose
+  @Column(name = "email")
   @Type(type = "text")
   private String email1;
-  @Expose
+  @Column(name = "email2")
   @Type(type = "text")
   private String email2;
-  @Expose
+  @Column(name = "email3")
   @Type(type = "text")
   private String email3;
-  @Expose
+
+  @Transient
   @Column(name = "photo")
   @Type(type = "text")
   private String photo;
 
 
-  @Expose
   @Transient
   private String allEmails;
 
-  @Expose
   @Transient
   private String allPhones;
 
+
   @XStreamOmitField
+  @Id
+  @Column(name = "id")
   private int id = Integer.MAX_VALUE;
 
   @Override
@@ -64,7 +67,9 @@ public class ContactData {
     return "ContactData{" +
             "lastname='" + lastname + '\'' +
             ", firstname='" + firstname + '\'' +
-            ", id='" + id + '\'' +
+            ", homePhone='" + homePhone + '\'' +
+            ", mobilePhone='" + mobilePhone + '\'' +
+            ", workPhone='" + workPhone + '\'' +
             '}';
   }
 
