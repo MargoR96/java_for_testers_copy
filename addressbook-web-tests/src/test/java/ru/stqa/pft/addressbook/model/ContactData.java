@@ -35,11 +35,22 @@ public class ContactData {
   private String address;
   @Expose
   @Type(type = "text")
-  private String email;
+  private String email1;
+  @Expose
+  @Type(type = "text")
+  private String email2;
+  @Expose
+  @Type(type = "text")
+  private String email3;
   @Expose
   @Column(name = "photo")
   @Type(type = "text")
   private String photo;
+
+
+  @Expose
+  @Transient
+  private String allEmails;
 
   @Expose
   @Transient
@@ -95,12 +106,27 @@ public class ContactData {
   public String getAllPhones() {
     return allPhones;
   }
+
+  public String getAllEmails() {
+    return allEmails;
+  }
+
+
+
   public String getAddress() {
     return address;
   }
 
-  public String getEmail() {
-    return email;
+  public String getEmail2() {
+    return email2;
+  }
+
+  public String getEmail3() {
+    return email3;
+  }
+
+  public String getEmail1() {
+    return email1;
   }
   public File getPhoto() {
     return new File(photo);
@@ -147,35 +173,52 @@ public class ContactData {
     return this;
   }
 
+  public ContactData withAllEmails(String allEmails) {
+    this.allEmails = allEmails;
+    return this;
+  }
+
   public ContactData withAddress(String address) {
     this.address = address;
     return this;
   }
 
+  public void setLastname(String lastname) {
+    this.lastname = lastname;
+  }
 
-
-  public ContactData withEmail(String email) {
-    this.email = email;
+  public ContactData withEmail1(String email1) {
+    this.email1 = email1;
     return this;
   }
+
+
+  public ContactData withEmail2(String email2) {
+    this.email2 = email2;
+    return this;
+  }
+
+  public ContactData withEmail3(String email3) {
+    this.email3 = email3;
+    return this;
+  }
+
 
   public ContactData withPhoto(File photo) {
     this.photo = photo.getPath();
     return this;
   }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
     ContactData that = (ContactData) o;
-    return id == that.id && Objects.equals(lastname, that.lastname) && Objects.equals(firstname, that.firstname);
+    return id == that.id && Objects.equals(lastname, that.lastname) && Objects.equals(group, that.group) && Objects.equals(firstname, that.firstname) && Objects.equals(homePhone, that.homePhone) && Objects.equals(mobilePhone, that.mobilePhone) && Objects.equals(workPhone, that.workPhone) && Objects.equals(address, that.address) && Objects.equals(email1, that.email1) && Objects.equals(email2, that.email2) && Objects.equals(email3, that.email3) && Objects.equals(photo, that.photo) && Objects.equals(allPhones, that.allPhones);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(lastname, firstname, id);
+    return Objects.hash(lastname, group, firstname, homePhone, mobilePhone, workPhone, address, email1, email2, email3, photo, allPhones, id);
   }
-
 
 }

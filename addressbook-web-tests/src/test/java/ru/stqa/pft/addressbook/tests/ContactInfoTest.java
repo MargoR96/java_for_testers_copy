@@ -28,11 +28,11 @@ public class ContactInfoTest extends TestBase {
     ContactData contactInfoFromEditForm = app.contact().infoFromEditForm(contact);
     assertThat(contact.getAllPhones(), equalTo(merge(contactInfoFromEditForm)));
     assertThat(contact.getAddress(), equalTo(mergeAddress(contactInfoFromEditForm)));
-    assertThat(contact.getEmail(), equalTo(mergeEmail(contactInfoFromEditForm)));
+    assertThat(contact.getAllEmails(), equalTo(mergeEmail(contactInfoFromEditForm)));
   }
 
   private String merge(ContactData contact) {
-    return Arrays.asList(contact.getHomePhone(),contact.getMobilePhone(),contact.getWorkPhone(),contact.getAddress(),contact.getEmail())
+    return Arrays.asList(contact.getHomePhone(),contact.getMobilePhone(),contact.getWorkPhone(),contact.getAllEmails())
             .stream().filter((s) -> !s.equals("")).map(ContactInfoTest::cleaned)
             .collect(Collectors.joining("\n"));
   }
@@ -42,7 +42,7 @@ public class ContactInfoTest extends TestBase {
             .collect(Collectors.joining("\n"));
   }
   private String mergeEmail(ContactData contact) {
-    return Arrays.asList(contact.getEmail())
+    return Arrays.asList(contact.getEmail1(),contact.getEmail2(),contact.getEmail3())
             .stream().filter((s) -> !s.equals("")).map(ContactInfoTest::cleaned)
             .collect(Collectors.joining("\n"));
   }

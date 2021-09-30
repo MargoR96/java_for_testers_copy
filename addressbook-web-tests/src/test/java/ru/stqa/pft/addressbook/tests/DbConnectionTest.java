@@ -49,7 +49,7 @@ public class DbConnectionTest {
       contacts.add(new ContactData()
               .withId(resultSetContacts.getInt("id")).withLastname(resultSetContacts.getString("lastname"))
               .withFirstname(resultSetContacts.getString("firstname")).withAddress(resultSetContacts.getString("address"))
-              .withEmail(resultSetContacts.getString("email")));
+              .withAllEmails(resultSetContacts.getString("email")));
     }
     resultSetContacts.close();
     st.close();
