@@ -60,10 +60,14 @@ public class ContactHelper extends HelperBase {
     attach(By.name("photo"),contactData.getPhoto());
 
     if (creation) {
-      new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
-    } else {
+      if (contactData.getGroups().size() > 0) {
+        Assert.assertTrue(contactData.getGroups().size() == 0);
+        new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroups().iterator().next().getName());
+      }
+    }else {
       Assert.assertFalse(isElementPresent(By.name("new_group")));
     }
+
 //    if(isElementPresent(By.name("new_group"))) {
 //      new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
 //    }
@@ -137,7 +141,7 @@ public class ContactHelper extends HelperBase {
       String allPhones = cells.get(5).getText();
       String address = cells.get(3).getText();
       String email = cells.get(4).getText();
-      contactCache.add(new ContactData().withId(id).withFirstname(firstname).withLastname(lastname).withGroup("test2").
+      contactCache.add(new ContactData().withId(id).withFirstname(firstname).withLastname(lastname).
               withAllPhones(allPhones).withAddress(address).withAllEmails(email));
     }
     return new Contacts(contactCache);
