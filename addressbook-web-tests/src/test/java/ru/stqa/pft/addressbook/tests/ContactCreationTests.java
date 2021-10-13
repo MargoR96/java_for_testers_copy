@@ -29,7 +29,7 @@ public class ContactCreationTests extends TestBase {
     //list.add(new Object[]{new ContactData().withFirstname("firstname 1").withLastname("lastname 1").withGroup("test2").withPhoto(photo)});
     //list.add(new Object[]{new ContactData().withFirstname("firstname 2").withLastname("lastname 2").withGroup("test2").withPhoto(photo)});
     //list.add(new Object[]{new ContactData().withFirstname("firstname 3").withLastname("lastname 3").withGroup("test2").withPhoto(photo)});
-    try ( BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resourses/contacts.xml")));
+    try ( BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/contacts.xml")));
     ) {
       String xml ="";
       String line = reader.readLine();
@@ -52,7 +52,7 @@ public class ContactCreationTests extends TestBase {
     //list.add(new Object[]{new ContactData().withFirstname("firstname 1").withLastname("lastname 1").withGroup("test2").withPhoto(photo)});
     //list.add(new Object[]{new ContactData().withFirstname("firstname 2").withLastname("lastname 2").withGroup("test2").withPhoto(photo)});
     //list.add(new Object[]{new ContactData().withFirstname("firstname 3").withLastname("lastname 3").withGroup("test2").withPhoto(photo)});
-    try (BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resourses/contacts.json")));
+    try (BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/contacts.json")));
     ) {
       String json ="";
       String line = reader.readLine();
@@ -81,7 +81,7 @@ public class ContactCreationTests extends TestBase {
   public void testContactCreation(ContactData contact) throws Exception {
       app.goTo().goToHome();
       Contacts before = app.db().contacts();
-      File photo = new File("src/test/resourses/photo.png");
+      File photo = new File("src/test/resources/photo.png");
       app.contact().create(contact,true);
       assertThat(app.contact().count(),equalTo(before.size() + 1));
       Contacts after = app.db().contacts();

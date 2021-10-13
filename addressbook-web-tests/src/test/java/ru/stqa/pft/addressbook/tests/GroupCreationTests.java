@@ -28,7 +28,7 @@ public class GroupCreationTests extends TestBase{
     //list.add(new Object[]{ new GroupData().withName("test1").withHeader("header1").withFooter("footer 1")});
     //list.add(new Object[]{ new GroupData().withName("test2").withHeader("header2").withFooter("footer 2")});
     //list.add(new Object[]{ new GroupData().withName("test3").withHeader("header3").withFooter("footer 3")});
-    try (BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resourses/groups.xml")));
+    try (BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/groups.xml")));
     ){
       String xml ="";
       String line = reader.readLine();
@@ -53,7 +53,7 @@ public class GroupCreationTests extends TestBase{
     //list.add(new Object[]{ new GroupData().withName("test1").withHeader("header1").withFooter("footer 1")});
     //list.add(new Object[]{ new GroupData().withName("test2").withHeader("header2").withFooter("footer 2")});
     //list.add(new Object[]{ new GroupData().withName("test3").withHeader("header3").withFooter("footer 3")});
-    try (BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resourses/groups.json")));
+    try (BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/groups.json")));
     ) {
       String json ="";
       String line = reader.readLine();
